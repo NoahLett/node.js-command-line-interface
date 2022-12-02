@@ -28,4 +28,13 @@ if (process.argv[2] === 'read') {
     }
     console.log(data);
   });
+} else if (process.argv[2] === 'update') {
+  data.notes[process.argv[3]] = process.argv[4];
+  fs.writeFile('data.json', JSON.stringify(data, null, 2), 'utf8', err => {
+    if (err) {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+  console.log(data);
 }
